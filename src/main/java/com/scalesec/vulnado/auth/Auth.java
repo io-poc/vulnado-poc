@@ -37,3 +37,4 @@ public class Auth {
     System.out.println(generatedPassword);
   }
 }
+}
