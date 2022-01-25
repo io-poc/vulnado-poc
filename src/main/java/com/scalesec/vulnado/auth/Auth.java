@@ -6,5 +6,6 @@ public class Auth {
   public String publicToken2 = "abc";
   private String token = "abc";
   private String password = "password";
-
+  private String username = "admin";
+  
 }
