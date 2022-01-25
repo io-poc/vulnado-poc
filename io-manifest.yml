@@ -1,5 +1,5 @@
 application:
-  projectName: vulnado
+  projectName: devsecops-vulnado
   release: <<RELEASE_TYPE>>
 environment:
   scm: <<SCM_TYPE>>
@@ -23,10 +23,10 @@ connectors:
     file_path: "workflowengine-results.sarif"
 - connector_name: "jira"
   fields:
-    username: "sig-rnd-io-testuser@synopsys.com"
+    username: "rahulgu@synopsys.com"
     issuetype: "Bug"
-    projectkey: "AYI"
-    assignee: "sig-rnd-io-testuser@synopsys.com"
+    projectkey: "VUL"
+    assignee: "rahulgu@synopsys.com"
     url: "<<JIRA_API_URL>>"
     authtoken: "<<JIRA_AUTH_TOKEN>>"
 buildbreaker:
