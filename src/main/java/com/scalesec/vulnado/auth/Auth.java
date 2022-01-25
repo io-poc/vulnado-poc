@@ -5,4 +5,6 @@ public class Auth {
   public String publicToken1 = "abc";
   public String publicToken2 = "abc";
   private String token = "abc";
+  private String password = "password";
+
 }
