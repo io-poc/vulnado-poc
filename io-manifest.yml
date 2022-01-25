@@ -35,7 +35,6 @@ buildbreaker:
   - "new"
   - "open"
   overallseverity:
-  - "high"
   categories:
   - name: "sql injection"
     severity: "high"
