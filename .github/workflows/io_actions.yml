@@ -28,8 +28,8 @@ jobs:
       id: prescription
       uses: synopsys-sig/intelligent-security-scan@2021.12.3
       env:
-        persona: devsecops
-        release_type: minor
+        persona: developer
+        release_type: major
       with:
         ioServerUrl: ${{secrets.ORG_IO_SERVER_URL}}
         ioServerToken: ${{secrets.ORG_IO_SERVER_TOKEN}}
@@ -65,8 +65,8 @@ jobs:
       if: ${{ steps.prescription.outputs.sastScan == 'true' || steps.prescription.outputs.scaScan == 'true' }}
       uses: synopsys-sig/intelligent-security-scan@2021.12.3
       env:
-        persona: devsecops
-        release_type: minor
+        persona: developer
+        release_type: major
       with:
         ioServerUrl: ${{secrets.ORG_IO_SERVER_URL}}
         ioServerToken: ${{secrets.ORG_IO_SERVER_TOKEN}}
