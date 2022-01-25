@@ -29,7 +29,7 @@ jobs:
       uses: synopsys-sig/intelligent-security-scan@2021.12.3
       env:
         persona: developer
-        release_type: major
+        release_type: minor
       with:
         ioServerUrl: ${{secrets.ORG_IO_SERVER_URL}}
         ioServerToken: ${{secrets.ORG_IO_SERVER_TOKEN}}
@@ -66,7 +66,7 @@ jobs:
       uses: synopsys-sig/intelligent-security-scan@2021.12.3
       env:
         persona: developer
-        release_type: major
+        release_type: minor
       with:
         ioServerUrl: ${{secrets.ORG_IO_SERVER_URL}}
         ioServerToken: ${{secrets.ORG_IO_SERVER_TOKEN}}
