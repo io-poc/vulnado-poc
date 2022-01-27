@@ -44,14 +44,14 @@ jobs:
     # Please note that the ID in previous step was set to prescription
     # in order for this logic to work also make sure that POLARIS_ACCESS_TOKEN
     # is defined in settings
-    #- name: Static Analysis with Polaris
-    #  if: ${{steps.prescription.outputs.sastScan == 'true' }}
-    #  run: |
-    #      export POLARIS_SERVER_URL=${{ secrets.ORG_POLARIS_SERVER_URL}}
-    #      export POLARIS_ACCESS_TOKEN=${{ secrets.ORG_POLARIS_ACCESS_TOKEN}}
-    #      wget -q $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
-    #      unzip -j polaris_cli-linux64.zip -d /tmp
-    #      /tmp/polaris analyze -w
+    - name: Static Analysis with Polaris
+      if: ${{steps.prescription.outputs.sastScan == 'true' }}
+      run: |
+          export POLARIS_SERVER_URL=${{ secrets.ORG_POLARIS_SERVER_URL}}
+          export POLARIS_ACCESS_TOKEN=${{ secrets.ORG_POLARIS_ACCESS_TOKEN}}
+          wget -q $POLARIS_SERVER_URL/api/tools/polaris_cli-linux64.zip
+          unzip -j polaris_cli-linux64.zip -d /tmp
+          /tmp/polaris analyze -w
     
     # Please note that the ID in previous step was set to prescription
     # in order for this logic to work
@@ -61,15 +61,9 @@ jobs:
       with:
          args: '--blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" --detect.tools="SIGNATURE_SCAN,DETECTOR"'
     
-    #- name: Rapid Scan with Black Duck
-    #  if: ${{steps.prescription.outputs.scaScan == 'true' }}
-    #  uses: blackducksoftware/github-action@v2
-    #  with:
-    #     args: '--blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio --detect.cleanup=false'
-    
     - name: Rapid Scan with Black Duck
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
-      run: bash <(curl -s https://detect.synopsys.com/detect.sh) \
+      run: bash <(curl -s https://detect.synopsys.com/detect7.sh) \
           --blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" \
           --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" \
           --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio \
