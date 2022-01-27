@@ -61,12 +61,19 @@ jobs:
       with:
          args: '--blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" --detect.tools="SIGNATURE_SCAN,DETECTOR"'
     
+    #- name: Rapid Scan with Black Duck
+    #  if: ${{steps.prescription.outputs.scaScan == 'true' }}
+    #  uses: blackducksoftware/github-action@v2
+    #  with:
+    #     args: '--blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio --detect.cleanup=false'
+    
     - name: Rapid Scan with Black Duck
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
-      uses: blackducksoftware/github-action@v2
-      with:
-         args: '--blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio --detect.cleanup=false'
-    
+      run: bash <(curl -s https://detect.synopsys.com/detect7.sh) \
+          --blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" \
+          --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" \
+          --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio \
+          --detect.cleanup=false
     
     - name: Synopsys Intelligent Security Scan
       if: ${{ steps.prescription.outputs.sastScan == 'true' || steps.prescription.outputs.scaScan == 'true' }}
