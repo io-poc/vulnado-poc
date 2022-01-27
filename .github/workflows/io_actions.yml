@@ -69,7 +69,7 @@ jobs:
     
     - name: Rapid Scan with Black Duck
       if: ${{steps.prescription.outputs.scaScan == 'true' }}
-      run: bash <(curl -s https://detect.synopsys.com/detect7.sh) \
+      run: bash <(curl -s https://detect.synopsys.com/detect.sh) \
           --blackduck.url="${{ secrets.ORG_BLACKDUCK_URL}}" \
           --blackduck.api.token="${{ secrets.ORG_BLACKDUCK_TOKEN}}" \
           --detect.blackduck.scan.mode=RAPID --detect.bom.aggregate.name=aggregated.bdio \
