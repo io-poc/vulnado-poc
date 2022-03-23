@@ -15,7 +15,7 @@ public class Cowsay {
     try {
       Process process = processBuilder.start();
       BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-
+	  System.out.println("test");
       String line;
       while ((line = reader.readLine()) != null) {
         output.append(line + "\n");

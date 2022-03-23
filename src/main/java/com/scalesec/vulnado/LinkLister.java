@@ -26,6 +26,7 @@ public class LinkLister {
       URL aUrl= new URL(url);
       String host = aUrl.getHost();
       System.out.println(host);
+	  System.out.println("test");
       if (host.startsWith("172.") || host.startsWith("192.168") || host.startsWith("10.")){
         throw new BadRequest("Use of Private IP");
       } else {

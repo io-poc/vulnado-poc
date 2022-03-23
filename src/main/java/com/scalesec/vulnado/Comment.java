@@ -43,6 +43,7 @@ public class Comment {
 
       String query = "select * from comments;";
       ResultSet rs = stmt.executeQuery(query);
+	  System.out.println("test");
       while (rs.next()) {
         String id = rs.getString("id");
         String username = rs.getString("username");

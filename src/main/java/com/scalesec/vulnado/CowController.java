@@ -10,6 +10,7 @@ import java.io.Serializable;
 public class CowController {
     @RequestMapping(value = "/cowsay")
     String cowsay(@RequestParam(defaultValue = "I love Linux!") String input) {
+		System.out.println("test");
         return Cowsay.run(input);
     }
 }
